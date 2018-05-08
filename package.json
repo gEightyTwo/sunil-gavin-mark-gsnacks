@@ -8,7 +8,8 @@
     "knex": "knex",
     "start": "node src/server.js",
     "latest": "knex migrate:latest",
-    "rollback": "knex migrate:rollback"
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run"
   },
   "keywords": [],
   "author": "Scott Hurlow <scott.hurlow@galvanize.com>",
