@@ -25,6 +25,7 @@ if(process.env.NODE_ENV !== 'production') require('dotenv').load()
 //////////////////////////////////////////////////////////////////////////////
 
 app.use('/api', require('./routes/snacks'))
+app.use('/api', require('./routes/reviews'))
 app.use('/auth', require('./routes/auth'))
 app.use('/users', require('./routes/users'))
 
