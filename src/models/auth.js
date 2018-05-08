@@ -24,10 +24,8 @@ function login(email, password){
   // 1. Check to see if user already exists
   return userModel.getOneByEmail(email)
   .then(function(data){
-    console.log('ahpoi');
     // 1a. if not, return a 400 with appropriate error message
     if(!data) throw { status: 400, message: "Bad Request"}
-    console.log(data);
     // save user for later use
     user = data
 
