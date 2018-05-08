@@ -17,7 +17,6 @@ const jwt = require('jsonwebtoken')
 
 function login(req, res, next){
   // 1. Make sure that request is good
-  console.log('hiiii');
   if(!req.body.email){
     return next({ status: 400, message: 'Bad request'})
   }
