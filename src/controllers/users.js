@@ -5,15 +5,15 @@ const userModel = require('../models/users')
 //////////////////////////////////////////////////////////////////////////////
 
 function create(req, res, next){
-  if(!req.body.username){
-    return next({ status: 400, message: 'Bad username'})
+  if(!req.body.email){
+    return next({ status: 400, message: 'Bad email'})
   }
 
   if(!req.body.password){
     return next({ status: 400, message: 'Bad password'})
   }
 
-  userModel.create(req.body.username, req.body.password)
+  userModel.create(req.body.email, req.body.password)
   .then(function(data){
     return res.status(201).send({ data })
   })
