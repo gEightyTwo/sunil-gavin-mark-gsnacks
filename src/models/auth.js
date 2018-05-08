@@ -19,7 +19,6 @@ const userModel = require('./users')
 
 function login(email, password){
   let user
-  console.log('hiiiiiiiiiii');
 
   // 1. Check to see if user already exists
   return userModel.getOneByEmail(email)
