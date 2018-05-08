@@ -2,11 +2,13 @@
   "name": "galvanize-snacks",
   "version": "1.0.0",
   "description": "Snack reviewing application",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "nodemon src/server.js",
     "knex": "knex",
-    "start": "node server.js"
+    "start": "node src/server.js",
+    "latest": "knex migrate:latest",
+    "rollback": "knex migrate:rollback"
   },
   "keywords": [],
   "author": "Scott Hurlow <scott.hurlow@galvanize.com>",
@@ -14,7 +16,10 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "boom": "^5.2.0",
+    "cors": "^2.8.4",
+    "dotenv": "^5.0.1",
     "express": "^4.15.3",
+    "jsonwebtoken": "^8.2.1",
     "knex": "^0.13.0",
     "morgan": "^1.8.2",
     "pg": "^7.0.2"
