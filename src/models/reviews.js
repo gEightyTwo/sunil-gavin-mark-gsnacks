@@ -6,24 +6,37 @@ const db = require('../../db/knex')
 // Basic CRUD Methods
 //////////////////////////////////////////////////////////////////////////////
 
-const getAll = (id, limit) => {
+const getAllReviews = (id) => {
+
+  return (
+    db('reviews')
+    .where({'reviews.snack_id': id})
+    .returning('*')
+  )
+}
+
+const getOneReview = (snacksId, reviewsId) => {
+  return (
+    db('reviews')
+    .where({'snack_id': snacksId, "id": reviewsId})
+    .returning('*')
+  )
+}
+const createReview = (id, usersId, title, text) => {
+  return (
+    db('reviews')
+    .join("users", 'users.id', "=", "user_id")
+
+    .returning('*')
+  )
+  }
+
+const modifyReview = (id, transactionId, body) => {
 
 }
 
-const getOne = (id, transactionId) => {
+const removeReview = (id, transactionId) => {
 
 }
 
-const create = (id, body) => {
-
-}
-
-const modify = (id, transactionId, body) => {
-
-}
-
-const remove = (id, transactionId) => {
-
-}
-
-module.exports = { getAll, getOne, create, modify, remove }
+module.exports = { getAllReviews, getOneReview, createReview, modifyReview, removeReview }
