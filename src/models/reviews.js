@@ -6,23 +6,30 @@ const db = require('../../db/knex')
 // Basic CRUD Methods
 //////////////////////////////////////////////////////////////////////////////
 
-const getAll = (id, limit) => {
-
+const getAll = (snackId, limit) => {
+  return (
+    db('reviews')
+    .where({ snack_id: snackId })
+  )
 }
 
-const getOne = (id, transactionId) => {
-
+const getOne = (snackId, reviewId) => {
+  console.log(snackId,reviewId)
+  return (
+    db('reviews')
+    .where({ snack_id: snackId, id: reviewId })
+  )
 }
 
 const create = (id, body) => {
 
 }
 
-const modify = (id, transactionId, body) => {
+const modify = (id, reviewId, body) => {
 
 }
 
-const remove = (id, transactionId) => {
+const remove = (id, reviewId) => {
 
 }
 

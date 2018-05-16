@@ -5,7 +5,7 @@ const dataModel = require('../models/reviews')
 //////////////////////////////////////////////////////////////////////////////
 
 const getAll = (req, res, next) => {
-  dataModel.getAll(req.query.limit)
+  dataModel.getAll(req.params.id, req.query.limit)
   .then((data) => res.status(200).json({ data }))
   .catch(next)
 }
