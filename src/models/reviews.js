@@ -14,23 +14,37 @@ const getAll = (snackId, limit) => {
 }
 
 const getOne = (snackId, reviewId) => {
-  console.log(snackId,reviewId)
   return (
     db('reviews')
     .where({ snack_id: snackId, id: reviewId })
   )
 }
 
-const create = (id, body) => {
-
+const create = (snackId, userId, {title, text, rating}) => {
+  return (
+    db('reviews')
+    .insert({title, text, rating, snack_id: snackId, user_id: userId})
+    .returning('*')
+  )
 }
 
-const modify = (id, reviewId, body) => {
-
+const modify = (snackId, reviewId, userId, {title, text, rating}) => {
+  return (
+    db('reviews')
+    .where({ id: reviewId })
+    .update({title, text, rating, snack_id: snackId, user_id: userId})
+    .returning('*')
+  )
 }
 
-const remove = (id, reviewId) => {
-
+const remove = (reviewId) => {
+  return (
+    db('reviews')
+    .where({ id: reviewId })
+    .first()
+    .del()
+    .returning('*')
+  )
 }
 
 module.exports = { getAll, getOne, create, modify, remove }
