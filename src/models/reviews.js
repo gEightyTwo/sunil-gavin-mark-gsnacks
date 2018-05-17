@@ -50,5 +50,4 @@ const remove = (reviewId) => {
 }
 
 
-
 module.exports = { getAll, getOne, create, modify, remove}
