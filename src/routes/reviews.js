@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const dataController = require('../controllers/reviews')
+const authController = require('../controllers/auth')
+
 
 //////////////////////////////////////////////////////////////////////////////
 // Basic CRUD Methods
@@ -8,8 +10,8 @@ const dataController = require('../controllers/reviews')
 
 router.get('/snacks/:id/reviews', dataController.getAll)
 router.get('/snacks/:id/reviews/:reviewId', dataController.getOne)
-router.post('/snacks/:id/reviews/', dataController.create)
-router.put('/snacks/:id/reviews/:reviewId', dataController.modify)
-router.delete('/snacks/:id/reviews/:reviewId', dataController.remove)
+router.post('/snacks/:id/reviews/', authController.isAuthenticated, dataController.create)
+router.put('/snacks/:id/reviews/:reviewId', authController.isAuthenticated, dataController.modify)
+router.delete('/snacks/:id/reviews/:reviewId', authController.isAuthenticated, dataController.remove)
 
 module.exports = router

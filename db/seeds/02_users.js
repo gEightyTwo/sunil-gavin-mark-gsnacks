@@ -4,8 +4,8 @@ exports.seed = function(knex, Promise) {
   return knex(TABLE_NAME).del()
     .then(function () {
       return knex(TABLE_NAME).insert([
-        {id: 1, first_name: 'Dan', last_name: 'Dog', email: 'dandog@gmail.com', hashed_password: 'ilovesnacks' },
-        {id: 2, first_name: 'Tengo', last_name: 'Dog', email: 'tengodog@gmail.com', hashed_password: 'ilovesnugs' }
+        {id: 1, first_name: 'Dan', last_name: 'Dog', email: 'dandog@gmail.com', hashed_password: '$2a$10$le4wxT7h3lM/Nt/P0ioTkOQ7FlIInpPK5G3iRK3YswmSZT2ihhcpm', picture:'http://www.placecage.com/50/50' },
+        {id: 2, first_name: 'Tengo', last_name: 'Dog', email: 'tengo@gmail.com', hashed_password: '$2a$10$uGg.CIM3Mr11xbVuGGLgHeWpmR1tegLeN0jnZy/6STBP2No1nqin2', picture:'http://www.placecage.com/50/50' }
       ])
     })
     .then(() => {

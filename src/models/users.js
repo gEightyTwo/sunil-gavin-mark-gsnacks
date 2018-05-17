@@ -32,8 +32,7 @@ function getOneById(id){
 // 5. "return/continue" promise
 //////////////////////////////////////////////////////////////////////////////
 
-function create(email, password){
-
+function create({email, password, first_name, last_name, picture}){
   // check to see of user already exists
   return getOneByEmail(email)
   .then(function(data){
@@ -45,10 +44,12 @@ function create(email, password){
   })
   .then(function(hashedPassword){
 
+    picture = picture ? picture : 'http://www.placecage.com/50/50'
+
     // 3. Insert record into database
     return (
       db('users')
-      .insert({ email, hashed_password: hashedPassword })
+      .insert({ email, hashed_password: hashedPassword, first_name, last_name, picture})
       .returning('*')
     )
   })

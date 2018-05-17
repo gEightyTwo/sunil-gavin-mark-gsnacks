@@ -6,37 +6,48 @@ const db = require('../../db/knex')
 // Basic CRUD Methods
 //////////////////////////////////////////////////////////////////////////////
 
-const getAllReviews = (id) => {
-
+const getAll = (snackId, limit) => {
   return (
     db('reviews')
-    .where({'reviews.snack_id': id})
+    .where({ snack_id: snackId })
     .returning('*')
   )
 }
 
-const getOneReview = (snacksId, reviewsId) => {
+const getOne = (snackId, reviewId) => {
   return (
     db('reviews')
-    .where({'snack_id': snacksId, "id": reviewsId})
+    .where({ snack_id: snackId, id: reviewId })
     .returning('*')
   )
 }
-const createReview = (id, usersId, title, text) => {
+
+const create = (snackId, userId, {title, text, rating}) => {
   return (
     db('reviews')
-    .join("users", 'users.id', "=", "user_id")
-
+    .insert({title, text, rating, snack_id: snackId, user_id: userId})
     .returning('*')
   )
-  }
-
-const modifyReview = (id, transactionId, body) => {
-
 }
 
-const removeReview = (id, transactionId) => {
-
+const modify = (snackId, reviewId, userId, {title, text, rating}) => {
+  return (
+    db('reviews')
+    .where({ id: reviewId })
+    .update({title, text, rating, snack_id: snackId, user_id: userId})
+    .returning('*')
+  )
 }
 
-module.exports = { getAllReviews, getOneReview, createReview, modifyReview, removeReview }
+const remove = (reviewId) => {
+  return (
+    db('reviews')
+    .where({ id: reviewId })
+    .first()
+    .del()
+    .returning('*')
+  )
+}
+
+
+module.exports = { getAll, getOne, create, modify, remove}

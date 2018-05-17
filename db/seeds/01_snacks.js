@@ -5,7 +5,7 @@ const TABLE_NAME = 'snacks'
 exports.seed = function(knex, Promise) {
   return knex(TABLE_NAME).del()
     .then(() => {
-      return knex(TABLE_NAME).insert(snacks);
+      return knex(TABLE_NAME).insert(snacks.map((ele, id) => ({...ele, id: id+1})));
     })
     .then(() => {
       return knex.raw(
