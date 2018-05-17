@@ -10,6 +10,7 @@ const getAll = (snackId, limit) => {
   return (
     db('reviews')
     .where({ snack_id: snackId })
+    .returning('*')
   )
 }
 
@@ -17,6 +18,7 @@ const getOne = (snackId, reviewId) => {
   return (
     db('reviews')
     .where({ snack_id: snackId, id: reviewId })
+    .returning('*')
   )
 }
 
@@ -47,4 +49,6 @@ const remove = (reviewId) => {
   )
 }
 
-module.exports = { getAll, getOne, create, modify, remove }
+
+
+module.exports = { getAll, getOne, create, modify, remove}
