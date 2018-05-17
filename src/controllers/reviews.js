@@ -17,21 +17,39 @@ const getOne = (req, res, next) => {
 }
 
 const create = (req, res, next) => {
-  // if (result.errors) return next({ status: 400, message: `Could not create new `, errors: result.errors })
-  dataModel.create(req.params.id, 1, req.body)
+  if(!req.body.title) return next({ status: 400, message:  'Error: Specify Title'})
+  if(!req.body.text) return next({ status: 400, message: 'Error: Specify Text'})
+  if(!req.body.rating) return next({ status: 400, message: 'Error: Specify Rating'})
+
+  dataModel.create(req.params.id, req.claim.id, req.body)
+
   .then((data) => res.status(201).json({ data }))
   .catch(next)
 }
 
 const modify = (req, res, next) => {
-  dataModel.modify(req.params.id, req.params.reviewId, 1, req.body)
-  .then((data) => res.status(200).json({ data }))
+  dataModel.getOne(req.params.id, req.params.reviewId)
+  .then(review => {
+    if(req.claim.id !== review[0]['user_id']) {
+      return next({ status: 401, message:  'Unauthorized'})
+    }
+    dataModel.modify(req.params.id, req.params.reviewId, req.claim.id, req.body)
+    .then((data) => res.status(200).json({ data }))
+    .catch(next)
+  })
   .catch(next)
 }
 
 const remove = (req, res, next) => {
-  dataModel.remove(req.params.reviewId)  //need to remove id prior to returning to front end?
-  .then((data) => res.status(200).json({ data }))
+  dataModel.getOne(req.params.id, req.params.reviewId)
+  .then(review => {
+    if(req.claim.id !== review[0]['user_id']) {
+      return next({ status: 401, message:  'Unauthorized'})
+    }
+    dataModel.remove(req.params.reviewId)
+    .then((data) => res.status(200).json({ data }))
+    .catch(next)
+  })
   .catch(next)
 }
 
