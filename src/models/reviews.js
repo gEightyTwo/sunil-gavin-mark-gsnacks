@@ -6,11 +6,9 @@ const db = require('../../db/knex')
 // Basic CRUD Methods
 //////////////////////////////////////////////////////////////////////////////
 
-const getAll = (snackId, limit) => {
+const getAll = () => {
   return (
     db('reviews')
-    .where({ snack_id: snackId })
-    .returning('*')
   )
 }
 
