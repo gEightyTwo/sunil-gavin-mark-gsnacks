@@ -8,10 +8,10 @@ const authController = require('../controllers/auth')
 // Basic CRUD Methods
 //////////////////////////////////////////////////////////////////////////////
 
-router.get('/snacks/:id/reviews', dataController.getAll)
-router.get('/snacks/:id/reviews/:reviewId', dataController.getOne)
+router.get('/reviews/', dataController.getAll)
+//router.get('/snacks/:id/reviews/:reviewId', dataController.getOne)
 router.post('/snacks/:id/reviews/', authController.isAuthenticated, dataController.create)
-router.put('/snacks/:id/reviews/:reviewId', authController.isAuthenticated, dataController.modify)
+router.put('/snacks/:id/reviews/', authController.isAuthenticated, dataController.modify)
 router.delete('/snacks/:id/reviews/:reviewId', authController.isAuthenticated, dataController.remove)
 
 module.exports = router
