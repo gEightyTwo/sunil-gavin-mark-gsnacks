@@ -25,10 +25,17 @@ function create(req, res, next){
   .catch(next)
 }
 
+const getAll = (req, res, next) => {
+  userModel.getAll()  
+  .then((data) => res.status(200).json({ data }))
+  .catch(next)
+}
+
 //////////////////////////////////////////////////////////////////////////////
 // Quality of Life functions
 //////////////////////////////////////////////////////////////////////////////
 
 module.exports = {
-  create
+  create,
+  getAll
 }

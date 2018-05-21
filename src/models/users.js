@@ -21,6 +21,13 @@ function getOneById(id){
   )
 }
 
+function getAll(){
+  return (
+    db('users')
+    .select(first_name,last_name,picture)
+  )
+}
+
 //////////////////////////////////////////////////////////////////////////////
 // Create a user
 //
@@ -64,5 +71,6 @@ function create({email, password, first_name, last_name, picture}){
 module.exports = {
   getOneByEmail,
   getOneById,
-  create
+  create,
+  getAll
 }
