@@ -24,7 +24,7 @@ function getOneById(id){
 function getAll(){
   return (
     db('users')
-    .select(first_name,last_name,picture)
+    .select('id','first_name','last_name','picture')
   )
 }
 
